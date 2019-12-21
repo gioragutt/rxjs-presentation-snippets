@@ -1,22 +1,25 @@
-import { HttpEvent, HttpInterceptor, HttpRequest, HttpHandler, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, Provider } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, timer } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from './user.model';
-
-const USERS: User[] = [
-  { firstName: 'Israel', lastName: 'Israeli' },
-  { firstName: 'Foo', lastName: 'Bar Baz' },
-];
 
 @Injectable()
 export class MockDataInterceptor implements HttpInterceptor {
+  id = 0;
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('im here', req);
+    console.log('intercepted');
     if (req.url.includes('/users')) {
-      return of(new HttpResponse({
-        body: USERS,
-        status: 200,
-      }));
+      const delay = Math.floor(Math.random() * 3000);
+      const id = this.id++;
+      return timer(delay).pipe(
+        map(() => new HttpResponse<User[]>({
+          body: [
+            { firstName: 'Israel', id, duration: delay / 1000 },
+          ],
+          status: 200,
+        })),
+      );
     }
     return next.handle(req);
   }
