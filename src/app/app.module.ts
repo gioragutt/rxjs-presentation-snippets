@@ -6,11 +6,13 @@ import { PROVIDE_MOCK_DATA_INTERCEPTOR } from './mock-data-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellComponent } from './shell/shell.component';
 import { SharedModule } from './shared/shared.module';
+import { UnsubcribingComponent } from './unsubcribing/unsubcribing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShellComponent
+    ShellComponent,
+    UnsubcribingComponent
   ],
   imports: [
     BrowserModule,

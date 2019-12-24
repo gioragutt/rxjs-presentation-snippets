@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UnsubcribingComponent } from './unsubcribing/unsubcribing.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,13 @@ export const routes: Routes = [
     data: {
       name: 'Subjects For Dom Events'
     },
+  },
+  {
+    path: 'unsubscribibg',
+    component: UnsubcribingComponent,
+    data: {
+      name: 'Unsubscribing',
+    }
   }
 ];
 
