@@ -6,10 +6,10 @@
       <ng-container *ngFor="let group of linkGroups.grouped">
         <h3 mat-subheader>{{group.group}}</h3>
         <a mat-list-item *ngFor="let link of group.links" [routerLink]="link.link" (click)="drawer.close()"
-          class="grouped-link">{{link.name}}</a>
+          routerLinkActive="active-link" class="grouped-link">{{link.name}}</a>
         <mat-divider></mat-divider>
       </ng-container>
-      <a mat-list-item *ngFor="let link of linkGroups.ungrouped" [routerLink]="link.link"
+      <a mat-list-item *ngFor="let link of linkGroups.ungrouped" [routerLink]="link.link" routerLinkActive="active-link"
         (click)="drawer.close()">{{link.name}}</a>
     </mat-nav-list>
   </mat-sidenav>
