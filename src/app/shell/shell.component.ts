@@ -21,7 +21,7 @@ interface LinkGroups {
 }
 
 const createLinkGroups = (allRoutes: Routes): LinkGroups => {
-  const grouped = allRoutes.reduce((acc: Record<string, Link[]>, curr: Route) => {
+  const grouped: Record<string, Link[]> = allRoutes.reduce((acc: Record<string, Link[]>, curr: Route) => {
     const key = curr.data.group || '__';
     acc[key] = [...(acc[key] || []), ({
       name: curr.data.name,

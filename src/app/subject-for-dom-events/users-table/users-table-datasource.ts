@@ -1,15 +1,10 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { merge, Observable, of, BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { User } from '../data.service';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from '../../data.service';
 
-/**
- * Data source for the UsersTable view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
 export class UsersTableDataSource extends DataSource<User> {
   paginator: MatPaginator;
   sort: MatSort;

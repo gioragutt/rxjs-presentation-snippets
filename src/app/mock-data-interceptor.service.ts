@@ -8,8 +8,7 @@ import { User } from './user.model';
 export class MockDataInterceptor implements HttpInterceptor {
   id = 0;
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('intercepted');
-    if (req.url.includes('/users')) {
+    if (req.url.includes('/users') && !req.url.startsWith('http')) {
       const delay = Math.floor(Math.random() * 3000);
       const id = this.id++;
       return timer(delay).pipe(

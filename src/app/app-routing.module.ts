@@ -39,12 +39,22 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'unsubscribibg',
+    path: 'unsubscribing',
     component: UnsubcribingComponent,
     data: {
+      group: 'Subscription Handling',
       name: 'Unsubscribing',
     }
-  }
+  },
+  {
+    path: 'subscription-sharing',
+    loadChildren: () => import('./sharing-subscription/sharing-subscription.module')
+      .then(m => m.SharingSubscriptionModule),
+    data: {
+      group: 'Subscription Handling',
+      name: 'Subsription Sharing'
+    },
+  },
 ];
 
 @NgModule({
