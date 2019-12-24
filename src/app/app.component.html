@@ -1,9 +1,19 @@
-<div style="height: 64px; background-color: rgba(100, 100, 200, 0.5); text-align: center; line-height: 64px;">
-  {{title}} | <b>Data Service</b> -
-  <i routerLink="/data-service/bad">Bad</i> /
-  <i routerLink="/data-service/better">Better</i> /
-  <i routerLink="/data-service/good">Good</i>
+<!-- <div style="height: 64px; background-color: rgba(100, 100, 200, 0.5); text-align: center; line-height: 64px;">
+  {{title}}
 </div>
-<div style="display: flex; align-items: center; justify-content: center; text-align: center;">
-  <router-outlet></router-outlet>
-</div>
+<div class="container">
+  <nav>
+    <ng-container *ngFor="let link of links; let i=index">
+      <i [routerLink]="link.path">
+        {{link.label}}
+      </i>
+      <b *ngIf="i !== links.length" style="margin: 0 8px;">|</b>
+    </ng-container>
+  </nav>
+</div> -->
+
+<app-shell>
+  <mat-card class="page-content">
+    <router-outlet></router-outlet>
+  </mat-card>
+</app-shell>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, timer } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, timer, interval } from 'rxjs';
 import { switchMap, repeat, repeatWhen, delay, take } from 'rxjs/operators';
 import { User } from 'src/app/user.model';
 
@@ -17,7 +17,6 @@ export class UsersService {
     this.refreshTrigger.pipe(
       // you can add stuff like debounceTime here
       switchMap(() => this.http.get<User[]>('/users')),
-      repeatWhen(() => timer(0, 1000).pipe(take(3))),
     ).subscribe(this.users);
 
     this.refresh(); // load initial data, can be placed elsewhere
