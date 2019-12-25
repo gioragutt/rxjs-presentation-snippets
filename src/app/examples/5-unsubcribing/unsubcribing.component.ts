@@ -30,9 +30,3 @@ export class UnsubcribingComponent {
   }
 }
 
-/**
- * 1. No unsubscribe
- * 2. Multiple subscriptions
- * 3. Multiple subscriptions in array
- * 4. takeUntil
- */

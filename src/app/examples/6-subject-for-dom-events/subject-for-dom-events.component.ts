@@ -13,7 +13,6 @@ function controlValue<T>(control: FormControl): Observable<T> {
   selector: 'app-subject-for-dom-events',
   templateUrl: './subject-for-dom-events.component.html',
   styleUrls: ['./subject-for-dom-events.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubjectForDomEventsComponent {
   readonly LIMIT_OPTIONS = [
@@ -26,9 +25,10 @@ export class SubjectForDomEventsComponent {
 
   readonly results$: Observable<QueryStatus<User[]>> =
     combineLatest(
-      this.keyups.pipe(debounceTime(300)),
+      this.keyups,
       controlValue<number>(this.resultsLimit)
     ).pipe(
+      debounceTime(300),
       map(([e, amount]) => [e.target.value, amount]),
       filter(([q]) => q.length > 0),
       switchMap(([query, amount]) =>
