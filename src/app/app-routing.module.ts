@@ -13,7 +13,8 @@ export const routes: Routes = [
     component: DataServiceBadComponent,
     data: {
       group: 'DataService',
-      name: 'Bad'
+      name: 'Bad',
+      icon: 'sentiment_very_dissatisfied',
     },
   },
   {
@@ -21,7 +22,8 @@ export const routes: Routes = [
     component: DataServiceBetterComponent,
     data: {
       group: 'DataService',
-      name: 'Better'
+      name: 'Better',
+      icon: 'sentiment_satisfied',
     },
   },
   {
@@ -29,14 +31,16 @@ export const routes: Routes = [
     component: DataServiceGoodComponent,
     data: {
       group: 'DataService',
-      name: 'Good'
+      name: 'Good',
+      icon: 'sentiment_very_satisfied',
     },
   },
   {
     path: 'subjects-for-dom-events',
     component: SubjectForDomEventsComponent,
     data: {
-      name: 'Subjects For Dom Events'
+      name: 'Subjects For Dom Events',
+      icon: 'input'
     },
   },
   {
@@ -45,6 +49,7 @@ export const routes: Routes = [
     data: {
       group: 'Subscription Handling',
       name: 'Unsubscribing',
+      icon: 'unsubscribe',
     }
   },
   {
@@ -52,7 +57,8 @@ export const routes: Routes = [
     component: SharingSubscriptionComponent,
     data: {
       group: 'Subscription Handling',
-      name: 'Subsription Sharing'
+      name: 'Subsription Sharing',
+      icon: 'subscriptions',
     },
   },
 ];

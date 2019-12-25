@@ -3,14 +3,15 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <ng-container *ngFor="let group of linkGroups.grouped">
+      <ng-container *ngFor="let group of linkGroups">
         <h3 mat-subheader>{{group.group}}</h3>
-        <a mat-list-item *ngFor="let link of group.links" [routerLink]="link.link" (click)="drawer.close()"
-          routerLinkActive="active-link" class="grouped-link">{{link.name}}</a>
+        <mat-list-item *ngFor="let link of group.links" [routerLink]="link.link" (click)="drawer.close()"
+          routerLinkActive="active-link">
+          <mat-icon mat-list-icon>{{link.icon}}</mat-icon>
+          <p class="grouped-link">{{link.name}}<p>
+        </mat-list-item>
         <mat-divider></mat-divider>
       </ng-container>
-      <a mat-list-item *ngFor="let link of linkGroups.ungrouped" [routerLink]="link.link" routerLinkActive="active-link"
-        (click)="drawer.close()">{{link.name}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -8,6 +8,7 @@ import { Routes, Route } from '@angular/router';
 interface Link {
   name: string;
   link: string;
+  icon: string;
 }
 
 interface LinkGroup {
@@ -15,27 +16,19 @@ interface LinkGroup {
   links: Link[];
 }
 
-interface LinkGroups {
-  ungrouped: Link[];
-  grouped: LinkGroup[];
-}
-
-const createLinkGroups = (allRoutes: Routes): LinkGroups => {
+const createLinkGroups = (allRoutes: Routes): LinkGroup[] => {
   const grouped: Record<string, Link[]> = allRoutes.reduce((acc: Record<string, Link[]>, curr: Route) => {
-    const key = curr.data.group || '__';
+    const key = curr.data.group || 'General';
     acc[key] = [...(acc[key] || []), ({
       name: curr.data.name,
       link: curr.path,
+      icon: curr.data.icon,
     })];
     return acc;
   }, {});
 
-  const { __: ungrouped, ...rest } = grouped;
-  return {
-    ungrouped,
-    grouped: Object.entries(rest)
-      .map(([group, links]) => ({ group, links })),
-  };
+  return Object.entries(grouped)
+    .map(([group, links]) => ({ group, links }));
 };
 
 @Component({
