@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, filter, map, startWith, switchMap } from 'rxjs/operators';
-import { DataService, User } from '../data.service';
+import { DataService, User } from '../../data.service';
 import { QueryStatus, withQueryStatus } from './query-status';
 
 function controlValue<T>(control: FormControl): Observable<T> {

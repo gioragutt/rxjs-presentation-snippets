@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user.model';
+import { FakeUser } from 'src/app/mock-data-interceptor.service';
 
 @Injectable()
 export class UsersService {
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('/users');
+  getUsers(): Observable<FakeUser[]> {
+    return this.http.get<FakeUser[]>('/users');
   }
 }
 
@@ -24,7 +24,7 @@ export class UsersService {
   `,
 })
 export class DataServiceBadComponent {
-  users: User[] = [];
+  users: FakeUser[] = [];
 
   constructor(private usersService: UsersService) {
     this.refresh();

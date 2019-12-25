@@ -21,6 +21,7 @@ export class DataService {
   );
 
   constructor(private http: HttpClient) { }
+
   search(query: string, amount: number): Observable<User[]> {
     return timer(Math.random() * 1000 + 1000).pipe(
       map(() => VALUES.filter(filter(query.toLowerCase()))),

@@ -10,6 +10,9 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatFormFieldModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
 } from '@angular/material';
 
 @NgModule({
@@ -25,6 +28,9 @@ import {
     MatIconModule,
     MatListModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class MaterialModule { }

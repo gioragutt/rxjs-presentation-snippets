@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../../data.service';
+import { User } from '../../../data.service';
 
 export class UsersTableDataSource extends DataSource<User> {
   paginator: MatPaginator;

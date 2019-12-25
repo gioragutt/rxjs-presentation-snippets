@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { UnsubcribingComponent } from './unsubcribing/unsubcribing.component';
-import { UsersComponent as DataServiceBadComponent } from './examples/data-service-bad/users.component';
-import { UsersComponent as DataServiceBetterComponent } from './examples/data-service-better/users.component';
-import { UsersComponent as DataServiceGoodComponent } from './examples/data-service-good/users.component';
+import { RouterModule, Routes } from '@angular/router';
+import { DataServiceBadComponent } from './examples/1-data-service-bad/data-service-bad.component';
+import { DataServiceBetterComponent } from './examples/2-data-service-better/data-service-better.component';
+import { DataServiceGoodComponent } from './examples/3-data-service-good/data-service-good.component';
+import { SharingSubscriptionComponent } from './examples/4-sharing-subscription/sharing-subscription.component';
+import { UnsubcribingComponent } from './examples/5-unsubcribing/unsubcribing.component';
+import { SubjectForDomEventsComponent } from './examples/6-subject-for-dom-events/subject-for-dom-events.component';
 
 export const routes: Routes = [
   {
@@ -32,8 +34,7 @@ export const routes: Routes = [
   },
   {
     path: 'subjects-for-dom-events',
-    loadChildren: () => import('./subject-for-dom-events/subject-for-dom-events.module')
-      .then(m => m.SubjectForDomEventsModule),
+    component: SubjectForDomEventsComponent,
     data: {
       name: 'Subjects For Dom Events'
     },
@@ -48,8 +49,7 @@ export const routes: Routes = [
   },
   {
     path: 'subscription-sharing',
-    loadChildren: () => import('./sharing-subscription/sharing-subscription.module')
-      .then(m => m.SharingSubscriptionModule),
+    component: SharingSubscriptionComponent,
     data: {
       group: 'Subscription Handling',
       name: 'Subsription Sharing'

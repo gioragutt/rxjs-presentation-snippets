@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PROVIDE_MOCK_DATA_INTERCEPTOR } from './mock-data-interceptor.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ShellComponent } from './shell/shell.component';
+import { ExamplesModule } from './examples/examples.module';
 import { SharedModule } from './shared/shared.module';
-import { UnsubcribingComponent } from './unsubcribing/unsubcribing.component';
+import { ShellComponent } from './shell/shell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShellComponent,
-    UnsubcribingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-  ],
-  providers: [
-    PROVIDE_MOCK_DATA_INTERCEPTOR
+    ExamplesModule,
   ],
   bootstrap: [AppComponent]
 })

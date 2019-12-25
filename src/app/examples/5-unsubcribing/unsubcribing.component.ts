@@ -4,8 +4,11 @@ import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-unsubcribing',
-  templateUrl: './unsubcribing.component.html',
-  styleUrls: ['./unsubcribing.component.scss']
+  template: `
+    <h1>Data1: {{data1$ | async}}</h1>
+    <h1>Data2: {{data2}}</h1>
+    <h1>Data3: {{data3}}</h1>
+  `,
 })
 export class UnsubcribingComponent {
   data1$ = timer(0, 1000);

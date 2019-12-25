@@ -2,7 +2,12 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HTT
 import { Injectable, Provider } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from './user.model';
+
+export interface FakeUser {
+  firstName: string;
+  id: number;
+  duration: number;
+}
 
 @Injectable()
 export class MockDataInterceptor implements HttpInterceptor {
@@ -12,7 +17,7 @@ export class MockDataInterceptor implements HttpInterceptor {
       const delay = Math.floor(Math.random() * 3000);
       const id = this.id++;
       return timer(delay).pipe(
-        map(() => new HttpResponse<User[]>({
+        map(() => new HttpResponse<FakeUser[]>({
           body: [
             { firstName: 'Israel', id, duration: delay / 1000 },
           ],
