@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UnsubcribingComponent } from './unsubcribing/unsubcribing.component';
+import { UsersComponent as DataServiceBadComponent } from './examples/data-service-bad/users.component';
+import { UsersComponent as DataServiceBetterComponent } from './examples/data-service-better/users.component';
+import { UsersComponent as DataServiceGoodComponent } from './examples/data-service-good/users.component';
 
 export const routes: Routes = [
   {
     path: 'data-service/bad',
-    loadChildren: () => import('./data-service/data-service-bad/data-service-bad.module')
-      .then(m => m.DataServiceBadModule),
+    component: DataServiceBadComponent,
     data: {
       group: 'DataService',
       name: 'Bad'
@@ -14,8 +16,7 @@ export const routes: Routes = [
   },
   {
     path: 'data-service/better',
-    loadChildren: () => import('./data-service/data-service-better/data-service-better.module')
-      .then(m => m.DataServiceBetterModule),
+    component: DataServiceBetterComponent,
     data: {
       group: 'DataService',
       name: 'Better'
@@ -23,8 +24,7 @@ export const routes: Routes = [
   },
   {
     path: 'data-service/good',
-    loadChildren: () => import('./data-service/data-service-good/data-service-good.module')
-      .then(m => m.DataServiceGoodModule),
+    component: DataServiceGoodComponent,
     data: {
       group: 'DataService',
       name: 'Good'
