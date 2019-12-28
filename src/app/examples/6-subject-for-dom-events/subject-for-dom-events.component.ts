@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { combineLatest, Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
 import { DataService, User } from '../../data.service';
 import { QueryStatus, withQueryStatus } from './query-status';
@@ -26,15 +26,15 @@ export class SubjectForDomEventsComponent {
   readonly results$: Observable<QueryStatus<User[]>> =
     combineLatest(
       controlValue<string>(this.queryText),
-      controlValue<number>(this.resultsLimit)
+      controlValue<number>(this.resultsLimit),
     ).pipe(
       debounceTime(300),
-      filter(([q]) => q.length > 0),
+      filter(([queryText]) => queryText.length > 0),
       switchMap(([query, amount]) =>
         withQueryStatus(() => this.data.search(query, amount))),
     );
 
-  constructor(private data: DataService, private fb: FormBuilder) { }
+  constructor(private data: DataService) { }
 }
 
 /**

@@ -9,7 +9,7 @@
   </mat-select>
 </mat-form-field>
 
-<!-- <button mat-raised-button (click)="refreshes.next()">Refresh</button> -->
+<!-- <button mat-raised-button (click)="refreshes$.next()">Refresh</button> -->
 
 <ng-container *ngIf="results$ | async as results">
   <ng-container *ngIf="results.loading; else error">

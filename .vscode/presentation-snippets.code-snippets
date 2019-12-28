@@ -79,5 +79,15 @@
       "    this.destroyed$.next();",
       "  }"
     ]
+  },
+  "refreshes-subject-1": {
+    "scope": "typescript",
+    "prefix": "refreshes-subject-1",
+    "body": ["readonly refreshes$ = new Subject<void>();"]
+  },
+  "refreshes-subject-2": {
+    "scope": "typescript",
+    "prefix": "refreshes-subject-2",
+    "body": ["this.refreshes$.pipe(startWith(null))"]
   }
 }
