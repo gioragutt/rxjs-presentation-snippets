@@ -1,0 +1,83 @@
+{
+  "unsub-step-1": {
+    "scope": "typescript",
+    "prefix": "unsub-step-1",
+    "body": [
+      "  private sub1: Subscription;",
+      "  private sub2: Subscription;",
+      "",
+      "  constructor() {",
+      "    this.sub1 = timer(100, 1000).pipe(",
+      "      tap(v => console.log('data2', v)),",
+      "    ).subscribe(v => {",
+      "      this.data2 = v;",
+      "    });",
+      "",
+      "    this.sub2 = timer(200, 1000).pipe(",
+      "      tap(v => console.log('data3', v)),",
+      "    ).subscribe(v => {",
+      "      this.data3 = v;",
+      "    });",
+      "  }",
+      "",
+      "  ngOnDestroy(): void {",
+      "    this.sub1.unsubscribe();",
+      "    this.sub2.unsubscribe();",
+      "  }"
+    ]
+  },
+  "unsub-step-2": {
+    "scope": "typescript",
+    "prefix": "unsub-step-2",
+    "body": [
+      "  private subs: Subscription[];",
+      "",
+      "  constructor() {",
+      "    const sub1 = timer(100, 1000).pipe(",
+      "      tap(v => console.log('data2', v)),",
+      "    ).subscribe(v => {",
+      "      this.data2 = v;",
+      "    });",
+      "",
+      "    const sub2 = timer(200, 1000).pipe(",
+      "      tap(v => console.log('data3', v)),",
+      "    ).subscribe(v => {",
+      "      this.data3 = v;",
+      "    });",
+      "",
+      "    this.subs = [sub1, sub2];",
+      "  }",
+      "",
+      "  ngOnDestroy(): void {",
+      "    this.subs.forEach(s => s.unsubscribe());",
+      "  }"
+    ]
+  },
+  "unsub-step-3": {
+    "scope": "typescript",
+    "prefix": "unsub-step-3",
+    "body": [
+      "  private destroyed$ = new Subject<void>();",
+      "",
+      "  constructor() {",
+      "    timer(100, 1000).pipe(",
+      "      takeUntil(this.destroyed$),",
+      "      tap(v => console.log('data2', v)),",
+      "    ).subscribe(v => {",
+      "      this.data2 = v;",
+      "    });",
+      "",
+      "    timer(200, 1000).pipe(",
+      "      takeUntil(this.destroyed$),",
+      "      tap(v => console.log('data3', v)),",
+      "    ).subscribe(v => {",
+      "      this.data3 = v;",
+      "    });",
+      "  }",
+      "",
+      "  ngOnDestroy(): void {",
+      "    this.destroyed$.next();",
+      "  }"
+    ]
+  }
+}
