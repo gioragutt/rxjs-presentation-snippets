@@ -6,9 +6,9 @@ import { DataServiceBetterComponent } from './2-data-service-better/data-service
 import { DataServiceGoodComponent } from './3-data-service-good/data-service-good.component';
 import { SharingSubscriptionComponent } from './4-sharing-subscription/sharing-subscription.component';
 import { ShowDataComponent } from './4-sharing-subscription/show-data.component';
-import { SubjectForDomEventsComponent } from './6-subject-for-dom-events/subject-for-dom-events.component';
-import { UsersTableComponent } from './6-subject-for-dom-events/users-table/users-table.component';
 import { UnsubcribingComponent } from './5-unsubcribing/unsubcribing.component';
+import { SubjectForEventsComponent } from './6-subject-for-events/subject-for-events.component';
+import { UsersTableComponent } from './6-subject-for-events/users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { UnsubcribingComponent } from './5-unsubcribing/unsubcribing.component';
     DataServiceBadComponent,
     DataServiceBetterComponent,
     DataServiceGoodComponent,
-    SubjectForDomEventsComponent,
+    SubjectForEventsComponent,
     SharingSubscriptionComponent,
 
     UsersTableComponent,
@@ -33,7 +33,7 @@ import { UnsubcribingComponent } from './5-unsubcribing/unsubcribing.component';
     DataServiceBadComponent,
     DataServiceBetterComponent,
     DataServiceGoodComponent,
-    SubjectForDomEventsComponent,
+    SubjectForEventsComponent,
     SharingSubscriptionComponent,
   ],
 })

@@ -5,7 +5,7 @@ import { DataServiceBetterComponent } from './examples/2-data-service-better/dat
 import { DataServiceGoodComponent } from './examples/3-data-service-good/data-service-good.component';
 import { SharingSubscriptionComponent } from './examples/4-sharing-subscription/sharing-subscription.component';
 import { UnsubcribingComponent } from './examples/5-unsubcribing/unsubcribing.component';
-import { SubjectForDomEventsComponent } from './examples/6-subject-for-dom-events/subject-for-dom-events.component';
+import { SubjectForEventsComponent } from './examples/6-subject-for-events/subject-for-events.component';
 
 export const routes: Routes = [
   {
@@ -36,10 +36,10 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'subjects-for-dom-events',
-    component: SubjectForDomEventsComponent,
+    path: 'subjects-for-events',
+    component: SubjectForEventsComponent,
     data: {
-      name: 'Subjects For Dom Events',
+      name: 'Subjects For Events',
       icon: 'input'
     },
   },

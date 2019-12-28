@@ -10,11 +10,11 @@ function controlValue<T>(control: FormControl): Observable<T> {
 }
 
 @Component({
-  selector: 'app-subject-for-dom-events',
-  templateUrl: './subject-for-dom-events.component.html',
-  styleUrls: ['./subject-for-dom-events.component.scss'],
+  selector: 'app-subject-for-events',
+  templateUrl: './subject-for-events.component.html',
+  styleUrls: ['./subject-for-events.component.scss'],
 })
-export class SubjectForDomEventsComponent {
+export class SubjectForEventsComponent {
   readonly LIMIT_OPTIONS = [
     ...[5, 10, 15].map(value => ({ value, label: `${value}` })),
     { value: Number.POSITIVE_INFINITY, label: 'No limit', }
@@ -38,7 +38,7 @@ export class SubjectForDomEventsComponent {
 }
 
 /**
- * Instead of handling handling events and doing all the logic
+ * Instead of handling events and doing all the logic
  * In an event callback, instead `next` a `Subject` with relevant data
  * From the event, and have it be a source for other observables.
  */
