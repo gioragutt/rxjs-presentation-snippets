@@ -1,5 +1,5 @@
 <mat-form-field floatLabel="always">
-  <input matInput (keyup)="keyups.next($event)" placeholder="Query" />
+  <input matInput [formControl]="queryText" placeholder="Query" />
 </mat-form-field>
 
 <mat-form-field>

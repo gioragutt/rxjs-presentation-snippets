@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { combineLatest, Observable, Subject } from 'rxjs';
-import { debounceTime, filter, map, startWith, switchMap } from 'rxjs/operators';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { combineLatest, Observable } from 'rxjs';
+import { debounceTime, filter, startWith, switchMap } from 'rxjs/operators';
 import { DataService, User } from '../../data.service';
 import { QueryStatus, withQueryStatus } from './query-status';
 
@@ -20,20 +20,25 @@ export class SubjectForDomEventsComponent {
     { value: Number.POSITIVE_INFINITY, label: 'No limit', }
   ];
 
-  readonly keyups = new Subject<any>();
+  readonly queryText = new FormControl('');
   readonly resultsLimit = new FormControl(this.LIMIT_OPTIONS[0].value);
 
   readonly results$: Observable<QueryStatus<User[]>> =
     combineLatest(
-      this.keyups,
+      controlValue<string>(this.queryText),
       controlValue<number>(this.resultsLimit)
     ).pipe(
       debounceTime(300),
-      map(([e, amount]) => [e.target.value, amount]),
       filter(([q]) => q.length > 0),
       switchMap(([query, amount]) =>
         withQueryStatus(() => this.data.search(query, amount))),
     );
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private fb: FormBuilder) { }
 }
+
+/**
+ * Instead of handling handling events and doing all the logic
+ * In an event callback, instead `next` a `Subject` with relevant data
+ * From the event, and have it be a source for other observables.
+ */
