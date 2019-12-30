@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, timer } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, mapTo } from 'rxjs/operators';
 
 export interface User {
   firstName: string;
@@ -16,11 +16,12 @@ const filter = (query: string) => ({ email, firstName, lastName }: User): boolea
   providedIn: 'root'
 })
 export class DataService {
-  dataFromHttp = this.http.get<any[]>(`https://jsonplaceholder.typicode.com/users`).pipe(
+  dataFromHttp = timer(1000).pipe(
+    mapTo(VALUES),
     tap(console.log),
   );
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   search(query: string, amount: number): Observable<User[]> {
     return timer(Math.random() * 1000 + 1000).pipe(
