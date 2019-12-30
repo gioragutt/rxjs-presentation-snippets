@@ -2,8 +2,8 @@
 
 The project contains two main branches -
 
-- `[pre-presentation](https://github.com/gioragutt/rxjs-presentation-snippets/tree/pre-presentation)` - contains the code before being fixed as part of the presentatin
-- `[post-presentation](https://github.com/gioragutt/rxjs-presentation-snippets/tree/post-presentation)` - contains the code AFTER being fixed in the presentation
+- [pre-presentation](https://github.com/gioragutt/rxjs-presentation-snippets/tree/pre-presentation) - contains the code before being fixed as part of the presentatin
+- [post-presentation](https://github.com/gioragutt/rxjs-presentation-snippets/tree/post-presentation) - contains the code AFTER being fixed in the presentation
 
 # Angular CLI Stuff
 
