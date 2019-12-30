@@ -1,30 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 import { FakeUser } from 'src/app/mock-data-interceptor.service';
 
 @Injectable()
 export class UsersService {
   private refreshTrigger = new Subject<void>();
-  private loading = new BehaviorSubject<boolean>(false);
-
-  get loading$(): Observable<boolean> {
-    return this.loading.asObservable();
-  }
 
   readonly users$: Observable<FakeUser[]> =
     this.refreshTrigger.pipe(
-      // you can add stuff like debounceTime here
-      tap(() => this.loading.next(true)),
-      switchMap(() => this.http.get<FakeUser[]>('/users')),
-      tap(() => this.loading.next(false)),
-    );
+      startWith(null), // HACK: explanation below
+      switchMap(() =>
+        this.http.get<FakeUser[]>('/users').pipe(
+          startWith(null), // Loading indication,
+        )
+      ));
 
-  constructor(private http: HttpClient) {
-    // load initial data, can be placed elsewhere
-    this.refresh();
-  }
+  constructor(private http: HttpClient) { }
 
   refresh(): void {
     this.refreshTrigger.next();
@@ -40,15 +33,16 @@ export class UsersService {
       Good
       <button mat-button (click)="refresh()">Refresh</button>
     </div>
-    <h1 *ngIf="loading$ | async; else loaded">Loading...</h1>
-    <ng-template #loaded>
-      <pre>{{ users$ | async | json }}</pre>
+    <pre *ngIf="users$ | async as users; else loading">
+      {{ users | json }}
+    </pre>
+    <ng-template #loading>
+      <h1>Loading...</h1>
     </ng-template>
   `
 })
 export class DataServiceGoodComponent {
   users$: Observable<FakeUser[]> = this.usersService.users$;
-  loading$: Observable<boolean> = this.usersService.loading$;
 
   constructor(private usersService: UsersService) { }
 
@@ -69,4 +63,16 @@ export class DataServiceGoodComponent {
  * and have a single observable represent the query state.
  *
  * See example 6 for reference
+ */
+
+/**
+ * Hack explanation:
+ *
+ * Due to this not being immediately subscribed to,
+ * The refresh triggers would only works once
+ * user$ is subscribed to. This is why calling refresh()
+ * During the service constructor or component constructor won't work.
+ *
+ * `startWith(null)` sends an initial trigger value to the observable (once subscribed),
+ * And this causes the first load to happen.
  */
