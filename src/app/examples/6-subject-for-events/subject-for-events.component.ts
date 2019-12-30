@@ -20,6 +20,8 @@ export class SubjectForEventsComponent {
     { value: Number.POSITIVE_INFINITY, label: 'No limit', }
   ];
 
+  readonly refreshes$ = new Subject<void>();
+
   readonly queryText = new FormControl('');
   readonly resultsLimit = new FormControl(this.LIMIT_OPTIONS[0].value);
 
@@ -27,6 +29,7 @@ export class SubjectForEventsComponent {
     combineLatest(
       controlValue<string>(this.queryText),
       controlValue<number>(this.resultsLimit),
+      this.refreshes$.pipe(startWith(null))
     ).pipe(
       debounceTime(300),
       filter(([queryText]) => queryText.length > 0),

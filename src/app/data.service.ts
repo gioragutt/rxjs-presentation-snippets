@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, timer } from 'rxjs';
-import { map, tap, mapTo } from 'rxjs/operators';
+import { map, tap, mapTo, share } from 'rxjs/operators';
 
 export interface User {
   firstName: string;
@@ -19,6 +19,7 @@ export class DataService {
   dataFromHttp = timer(1000).pipe(
     mapTo(VALUES),
     tap(console.log),
+    share(),
   );
 
   constructor() { }
